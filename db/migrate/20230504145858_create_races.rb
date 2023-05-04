@@ -3,6 +3,7 @@ class CreateRaces < ActiveRecord::Migration[6.1]
     create_table :races do |t|
       t.string :name
       t.integer :year
+      t.string :duration
       t.integer :user_id
       t.integer :length_id
 

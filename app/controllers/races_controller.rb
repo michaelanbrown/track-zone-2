@@ -27,7 +27,7 @@ class RacesController < ApplicationController
     private
     
     def race_params
-        params.permit(:name, :year, :user_id, :length_id)
+        params.permit(:name, :year, :duration, :user_id, :length_id)
     end
 
     def find_race
