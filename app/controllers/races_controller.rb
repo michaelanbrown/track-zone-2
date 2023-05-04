@@ -10,6 +10,7 @@ class RacesController < ApplicationController
     end
 
     def create
+        byebug
         race = Race.create!(race_params)
         render json: race, status: :created
     end
