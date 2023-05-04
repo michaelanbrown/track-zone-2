@@ -44,6 +44,6 @@ ActiveRecord::Schema.define(version: 2023_05_04_145858) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "races", "races", column: "length_id"
+  add_foreign_key "races", "lengths"
   add_foreign_key "races", "users"
 end

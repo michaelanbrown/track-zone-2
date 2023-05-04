@@ -12,7 +12,7 @@ class CreateRaces < ActiveRecord::Migration[6.1]
     add_foreign_key :races, :users, column: :user_id
     add_index :races, :user_id
 
-    add_foreign_key :races, :races, column: :length_id
+    add_foreign_key :races, :lengths, column: :length_id
     add_index :races, :length_id
 
   end
