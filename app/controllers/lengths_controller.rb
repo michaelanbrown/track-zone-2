@@ -1,0 +1,2 @@
+class LengthsController < ApplicationController
+end
