@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2023_05_04_145858) do
 
   create_table "lengths", force: :cascade do |t|
     t.integer "distance"
-    t.string "mesaurement"
+    t.string "measurement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2023_05_04_145858) do
   create_table "races", force: :cascade do |t|
     t.string "name"
     t.integer "year"
-    t.bigint "user_id", null: false
-    t.bigint "length_id", null: false
+    t.integer "user_id"
+    t.integer "length_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["length_id"], name: "index_races_on_length_id"
@@ -44,6 +44,6 @@ ActiveRecord::Schema.define(version: 2023_05_04_145858) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "races", "lengths"
+  add_foreign_key "races", "races", column: "length_id"
   add_foreign_key "races", "users"
 end
