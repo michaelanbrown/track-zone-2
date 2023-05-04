@@ -16,7 +16,7 @@ class RacesController < ApplicationController
 
     def update
         @race.update!(race_params)
-        render json: runner, status: :accepted
+        render json: race, status: :accepted
     end
 
     def destroy
