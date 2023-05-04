@@ -1,5 +1,9 @@
 class RacesController < ApplicationController
 
+    def index 
+        render json: Race.all, status: :ok
+    end
+
     def create
         race = Race.create!(race_params)
         render json: race, status: :created
