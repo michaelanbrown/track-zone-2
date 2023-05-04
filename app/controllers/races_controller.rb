@@ -10,14 +10,13 @@ class RacesController < ApplicationController
     end
 
     def create
-        byebug
         race = Race.create!(race_params)
         render json: race, status: :created
     end
 
     def update
         @race.update!(race_params)
-        render json: race, status: :accepted
+        render json: @race, status: :accepted
     end
 
     def destroy
