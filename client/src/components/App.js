@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from "react"
 import { Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Welcome from './Welcome';
+import Login from './Login';
 import { UserContext } from '../context/User';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Header/>
           <Routes>
             <Route path="/" element={<Welcome/>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
     </main>
   );
