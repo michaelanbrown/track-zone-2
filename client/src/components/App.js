@@ -5,6 +5,7 @@ import Header from './Header';
 import Welcome from './Welcome';
 import Login from './Login';
 import Users from './Users'
+import UsersShow from './UsersShow'
 import { UserContext } from '../context/User';
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
             <Route path="/" element={<Welcome/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
+            <Route path="/users/:id" element={<UsersShow/>} />
           </Routes>
     </main>
   );
