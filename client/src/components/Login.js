@@ -31,11 +31,10 @@ function Login({  }) {
             if(res.ok){
                 res.json().then(user => {
                     setCurrentUser(user)
-                    navigate(`/`)
+                    navigate(`/users/${currentUser.id}`)
                 })
             } else {
-                // res.json().then(json => setErrors([json.errors]))
-                res.json().then(json => console.log([json.errors]))
+                res.json().then(json => setErrors([json.errors]))
             }
         }) 
     }

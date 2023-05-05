@@ -26,7 +26,9 @@ export default function NavBar ()  {
             { currentUser ? null : <NavLink className="active" to="/login">Login</NavLink>}
             <br></br>
             { currentUser ? <button className="bttn" onClick={handleLogOut}>Logout</button> : null }
-            <br/>
+            { currentUser ? <br /> : null}
+            { currentUser ? <NavLink className="active" to="/users">Users</NavLink> : null }
+            <br></br>
         </nav>
     )
 }

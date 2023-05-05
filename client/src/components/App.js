@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Welcome from './Welcome';
 import Login from './Login';
+import Users from './Users'
 import { UserContext } from '../context/User';
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Welcome/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/users/*" element={<Users users={users}/>} />
           </Routes>
     </main>
   );
