@@ -32,14 +32,7 @@ function RaceForm({ races, setRaces, lengths, setLengths }) {
         .then(res => {
             if(res.ok){
                 res.json().then(race => {
-                    setRaces([...races, {
-                        id: race.id,
-                        name: race.name,
-                        year: race.year,
-                        duration: "TBD",
-                        user: {id: race.user_id},
-                        length_id: race.length_id
-                    }])
+                    setRaces([...races, race])
                     setCurrentUser({
                         'id': currentUser.id,
                         'age': currentUser.age,
