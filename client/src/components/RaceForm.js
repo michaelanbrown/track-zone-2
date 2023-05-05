@@ -4,7 +4,7 @@ import './App.css';
 import { UserContext } from '../context/User';
 import LengthForm from './LengthForm';
 
-function RaceForm({ races, setRaces, lengths, show, setShow, lengthShow, setLengthShow }) {
+function RaceForm({ races, setRaces, lengths, setLengths, show, setShow, lengthShow, setLengthShow }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [lengthFormShow, setLengthFormShow] = useState(false)
@@ -73,10 +73,10 @@ function RaceForm({ races, setRaces, lengths, show, setShow, lengthShow, setLeng
     })
 
     function onLengthClick() {
-        setLengthShow(true)
+        navigate(`/new_length`)
     }
 
-    const lengthForm = lengthShow ? <LengthForm lengthFormShow={lengthFormShow} setLengthFormShow={setLengthFormShow}/> : null
+    const lengthForm = lengthShow ? <LengthForm lengths={lengths} setLengths={setLengths} lengthFormShow={lengthFormShow} setLengthFormShow={setLengthFormShow}/> : null
 
         return (
             <> 
