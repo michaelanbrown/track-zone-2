@@ -1,29 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import './App.css';
 import { useParams } from "react-router-dom";
 import { UserContext } from '../context/User';
 
-function LengthsShow({ lengths, setLengths }) {
+function LengthsShow({ lengths, races }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
-    const [errors, setErrors] = useState([])
     const {id} = useParams();
 
-    useEffect(() => {
-        fetch("/lengths")
-        .then((res) => {
-          if (res.ok) {
-            res.json().then(setLengths)
-          } else {
-            res.json().then(json => setErrors([json.error]))
-          }
-        })
-      },[])
+    const currentLength = lengths.filter(length => length.id == id)
+    const userRaces = races.filter(race => race.user.id == currentUser.id && race.length.id == id)
+console.log(currentLength)
 
-    
         return (
             <div>
-hello
-        </div>
+                <h1>{currentLength.distance}{' '}{currentLength.measurement}</h1>
+                <br/>
+                {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<p>Final Time: {race.duration}</p></li>) : null }
+            </div>
     )
 }
 

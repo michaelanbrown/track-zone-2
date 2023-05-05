@@ -24,8 +24,8 @@ function App() {
         .then((user) => {
           setCurrentUser(user);
           getUsers();
-          // getLengths();
-          // getRaces();
+          getLengths();
+          getRaces();
         });
       }
     })
@@ -42,27 +42,27 @@ function App() {
     })
   }
 
-  // function getLengths() {
-  //   fetch("/lengths")
-  //   .then((res) => {
-  //     if(res.ok){
-  //       res.json().then(setLengths)
-  //     } else {
-  //       res.json().then(json => setErrors([json.error]))
-  //     }
-  //   })
-  // }
+  function getLengths() {
+    fetch("/lengths")
+    .then((res) => {
+      if(res.ok){
+        res.json().then(setLengths)
+      } else {
+        res.json().then(json => setErrors([json.error]))
+      }
+    })
+  }
 
-  // function getRaces() {
-  //   fetch("/races")
-  //   .then((res) => {
-  //     if(res.ok){
-  //       res.json().then(setRaces)
-  //     } else {
-  //       res.json().then(json => setErrors([json.error]))
-  //     }
-  //   })
-  // }
+  function getRaces() {
+    fetch("/races")
+    .then((res) => {
+      if(res.ok){
+        res.json().then(setRaces)
+      } else {
+        res.json().then(json => setErrors([json.error]))
+      }
+    })
+  }
 
   return (
     <main>
@@ -72,7 +72,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow/>} />
-            <Route path="/lengths/:id" element={<LengthsShow lengths={lengths} setLengths={setLengths}/>} />
+            <Route path="/lengths/:id" element={<LengthsShow lengths={lengths} races={races}/>} />
           </Routes>
     </main>
   );
