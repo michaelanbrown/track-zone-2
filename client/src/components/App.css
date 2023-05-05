@@ -59,3 +59,9 @@ body{
   font-size: 100%;
   color: navy
 }
+
+.UserCardImg {
+  max-width: fit-content;
+  max-height: fit-content;
+  text-align: center;
+}

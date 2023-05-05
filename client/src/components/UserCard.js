@@ -7,19 +7,22 @@ import UsersShow from './UsersShow';
 function UserCard( { user }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-      
+      const userRaces = user.races
+
 
         return (
             <div>
                 <h1>{user.name}</h1>
                 <br/>
-                <img className = "RunnerCardImg" src={user.photo} alt={user.name} width="40%" height="40%"/>
-                <p>Age: {user.age}</p>
+                <img className = "UserCardImg" src={user.photo} alt={user.name} width="40%" height="40%"/>
+                {currentUser.id == user.id ? <br/> : null }
                 {currentUser.id == user.id ? <><Link to={`${user.id}`}>View Details</Link>
                   <Routes>
                     <Route path={`users/${currentUser.id}`} element={<UsersShow/>}/>
                   </Routes></> : null}
-                <br/>
+                <p>Age: {user.age}</p>
+                Last Three Races:
+                {userRaces ? userRaces.map(race => <li>{race.name}</li>) : null }
                 <br/>
                 <br/>
             </div>
