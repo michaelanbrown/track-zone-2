@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
 
-function RaceForm({ races, setRaces, lengths }) {
+function RaceForm({ races, setRaces, lengths, show, setShow }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState([])
@@ -63,6 +63,7 @@ function RaceForm({ races, setRaces, lengths }) {
             ...formData,
             [e.target.id] : document.getElementById('length_id').value
         });
+        document.getElementById('length_id').value !== "" ? setShow(true) : setShow(false)
     }
 
     const lengthOptions = ["", ...lengths].map(length => {
@@ -76,9 +77,10 @@ function RaceForm({ races, setRaces, lengths }) {
                 <br/>
                 Year: <input type='text' name='year' value={year} onChange={handleChange} />
                 <br/>
-                Length: <select id="length_id" onChange={handleLengthChange}>
+                Select a Length: <select id="length_id" onChange={handleLengthChange}>
                 {lengthOptions}
-                </select>
+                </select> Or {' '}
+                <button disabled={show}>Create New Length</button>
                 <br/>
                 <input type='submit' value='Create a Race!' />
             </form>
