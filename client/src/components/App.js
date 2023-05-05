@@ -10,6 +10,7 @@ import UsersShow from './UsersShow';
 import LengthsShow from './LengthsShow';
 import { UserContext } from '../context/User';
 import RaceForm from './RaceForm';
+import UpdateRaceForm from './UpdateRaceForm';
 
 function App() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -77,6 +78,7 @@ function App() {
             <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
             <Route path="/lengths/:id" element={<LengthsShow lengths={lengths} races={races}/>} />
             <Route path="/new_race" element={<RaceForm races={races} setRaces={setRaces}/>}/> 
+            <Route path="/update_race" element={<UpdateRaceForm races={races} setRaces={setRaces}/>}/> 
           </Routes>
     </main>
   );

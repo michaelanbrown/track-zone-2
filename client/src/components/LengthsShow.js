@@ -9,7 +9,7 @@ function LengthsShow({ lengths, races }) {
 
     const currentLength = (lengths.filter(length => length.id == id)[0])
     const userRaces = races.filter(race => race.user.id == currentUser.id && race.length.id == id)
-console.log(races)
+
         return (
             <div>
                 <h1>{currentLength ? currentLength.distance : null}{' '}{currentLength ? currentLength.measurement : null} Races!</h1>
