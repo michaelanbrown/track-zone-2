@@ -37,7 +37,6 @@ function RaceForm({ races, setRaces }) {
                         name: race.name,
                         year: race.year,
                         duration: "TBD",
-                        user_id: race.user_id,
                         user: {id: race.user_id},
                         length_id: race.length_id
                     }])
