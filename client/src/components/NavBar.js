@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import './App.css';
 import { UserContext } from '../context/User';
@@ -30,6 +30,8 @@ export default function NavBar ()  {
             { currentUser ? <button className="bttn" onClick={handleLogOut}>Logout</button> : null }
             { currentUser ? <br /> : null}
             { currentUser ? <NavLink className="active" to="/users">Users</NavLink> : null }
+            { currentUser ? <br /> : null}
+            { currentUser ? <NavLink className="active" to="/new_race">New Race</NavLink> : null }
             <br></br>
         </nav>
     )
