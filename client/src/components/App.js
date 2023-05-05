@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react"
 import { Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Welcome from './Welcome';
+import Signup from './SignUp';
 import Login from './Login';
 import Users from './Users';
 import UsersShow from './UsersShow';
@@ -69,6 +70,7 @@ function App() {
         <Header/>
           <Routes>
             <Route path="/" element={<Welcome/>} />
+            <Route path="/signup" element={<Signup/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow/>} />
