@@ -3,7 +3,7 @@ import './App.css';
 import { UserContext } from '../context/User';
 import { useNavigate } from 'react-router-dom';
 
-function LengthForm({ lengths, setLengths, lengthFormShow, setLengthFormShow }) {
+function LengthForm({ lengths, setLengths }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [errors, setErrors] = useState([])
     const navigate = useNavigate();
@@ -28,11 +28,22 @@ function LengthForm({ lengths, setLengths, lengthFormShow, setLengthFormShow }) 
         .then(res => {
             if(res.ok){
                 res.json().then(length => {
-                    console.log(length)
                     setLengths([...lengths, length])
                     setFormData({
                         distance:'',
                         measurement: ''
+                    })
+                    setCurrentUser({
+                        'id': currentUser.id,
+                        'age': currentUser.age,
+                        'email': currentUser.email,
+                        'name': currentUser.name,
+                        'photo': currentUser.photo,
+                        'races': currentUser.races,
+                        'username': currentUser.username,
+                        'lengths': [...currentUser.lengths, {
+                            length
+                        }]
                     })
                     navigate(`/new_race`)
                 })
@@ -60,7 +71,6 @@ function LengthForm({ lengths, setLengths, lengthFormShow, setLengthFormShow }) 
             ...formData,
             [e.target.id] : document.getElementById('measurement').value
         });
-        // document.getElementById('length_id').value !== "" ? setShow(true) : setShow(false)
     }
 
   return (

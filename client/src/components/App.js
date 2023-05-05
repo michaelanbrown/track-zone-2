@@ -19,8 +19,6 @@ function App() {
   const [users, setUsers] = useState([])
   const [lengths, setLengths] = useState([])
   const [races, setRaces] = useState([])
-  const [show, setShow] = useState(false)
-  const [lengthShow, setLengthShow] = useState(false)
 
   useEffect(() => {
     fetch("/authorized_user")
@@ -80,7 +78,7 @@ function App() {
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
             <Route path="/users/:id/lengths/:id" element={<LengthsShow lengths={lengths} races={races}/>} />
-            <Route path="/new_race" element={<RaceForm races={races} setRaces={setRaces} lengths={lengths} setLengths={setLengths} show={show} setShow={setShow} lengthShow={lengthShow} setLengthShow={setLengthShow}/>}/> 
+            <Route path="/new_race/*" element={<RaceForm races={races} setRaces={setRaces} lengths={lengths} setLengths={setLengths}/>}/> 
             <Route path="/update_race" element={<UpdateRaceForm races={races} setRaces={setRaces}/>}/>
             <Route path="/new_length" element={<LengthForm lengths={lengths} setLengths={setLengths}/>}/>
           </Routes>

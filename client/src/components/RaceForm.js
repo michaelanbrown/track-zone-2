@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
+import { Link, Routes, Route } from 'react-router-dom';
 import LengthForm from './LengthForm';
 
-function RaceForm({ races, setRaces, lengths, setLengths, show, setShow, lengthShow, setLengthShow }) {
+function RaceForm({ races, setRaces, lengths }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
-    const [lengthFormShow, setLengthFormShow] = useState(false)
     const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
         name:'',
@@ -53,6 +53,7 @@ function RaceForm({ races, setRaces, lengths, setLengths, show, setShow, lengthS
         })  
     }
 
+
     function handleChange(e) {
         setFormData({
             ...formData,
@@ -65,21 +66,16 @@ function RaceForm({ races, setRaces, lengths, setLengths, show, setShow, lengthS
             ...formData,
             [e.target.id] : document.getElementById('length_id').value
         });
-        document.getElementById('length_id').value !== "" ? setShow(true) : setShow(false)
     }
 
     const lengthOptions = ["", ...lengths].map(length => {
         return (<option value={length.id} key={length.id ? length.id : ""}>{length.distance}{' '}{length.measurement}</option>)
     })
 
-    function onLengthClick() {
-        navigate(`/new_length`)
-    }
 
-    const lengthForm = lengthShow ? <LengthForm lengths={lengths} setLengths={setLengths} lengthFormShow={lengthFormShow} setLengthFormShow={setLengthFormShow}/> : null
 
         return (
-            <> 
+            <> <h1>Create a Race!</h1>
             <form onSubmit={onSubmit}>
                 Name: <input type='text' name='name' value={name} onChange={handleChange} />
                 <br/>
@@ -88,9 +84,11 @@ function RaceForm({ races, setRaces, lengths, setLengths, show, setShow, lengthS
                 Select a Length: <select id="length_id" onChange={handleLengthChange}>
                 {lengthOptions}
                 </select> Or {' '}
-                <button type="button" onClick={onLengthClick} disabled={show}>Create New Length</button>
+                <><Link to={`/new_length`}>Create New Length</Link>
+                    <Routes>
+                        <Route path={`/new_length`} element={<LengthForm/>}/>
+                    </Routes></>
                 <br/>
-                {lengthForm}
                 <input type='submit' value='Create a Race!' />
             </form>
             { errors ? <br/> : null }

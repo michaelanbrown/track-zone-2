@@ -13,7 +13,7 @@ function UserCard( { user }) {
                 <br/>
                 <img className = "UserCardImg" src={user.photo} alt={user.name} width="40%" height="40%"/>
                 {currentUser.id == user.id ? <br/> : null }
-                {currentUser.id == user.id ? <><Link to={`${user.id}`}>View Details</Link>
+                {currentUser.id == user.id ? <><Link to={`${currentUser.id}`}>View Details</Link>
                   <Routes>
                     <Route path={`users/${currentUser.id}`} element={<UsersShow/>}/>
                   </Routes></> : null}
