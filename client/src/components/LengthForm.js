@@ -33,22 +33,22 @@ function LengthForm({ lengths, setLengths }) {
                         distance:'',
                         measurement: ''
                     })
-                    setCurrentUser({
-                        'id': currentUser.id,
-                        'age': currentUser.age,
-                        'email': currentUser.email,
-                        'name': currentUser.name,
-                        'photo': currentUser.photo,
-                        'races': currentUser.races,
-                        'username': currentUser.username,
-                        'lengths': [...currentUser.lengths, {
-                            length
-                        }]
-                    })
+                    // setCurrentUser({
+                    //     'id': currentUser.id,
+                    //     'age': currentUser.age,
+                    //     'email': currentUser.email,
+                    //     'name': currentUser.name,
+                    //     'photo': currentUser.photo,
+                    //     'races': currentUser.races,
+                    //     'username': currentUser.username,
+                    //     'lengths': [...currentUser.lengths, {
+                    //         length
+                    //     }]
+                    // })
                     navigate(`/new_race`)
                 })
             } else {
-                res.json().then(json => setErrors(Object.entries(json.errors)))
+                res.json().then(json => setErrors(json.errors))
             }
         })  
     }
@@ -73,6 +73,8 @@ function LengthForm({ lengths, setLengths }) {
         });
     }
 
+    const errorMap = errors.map(error => <li class="error">{error}</li>)
+
   return (
     <div>
         <h1>Create a Length!</h1>
@@ -85,6 +87,8 @@ function LengthForm({ lengths, setLengths }) {
             <br/>
             <input type='submit' value='Create a Length!' />
         </form>
+        <br/>
+        {errors ? errorMap : null}
     </div>
   );
 }

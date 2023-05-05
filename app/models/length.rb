@@ -4,4 +4,5 @@ class Length < ApplicationRecord
 
     validates :distance, numericality: { greater_than: 0 }
     validates :measurement, presence: true, inclusion: { in: %w(km mi m) }
+    validates_uniqueness_of :distance, scope: :measurement
 end

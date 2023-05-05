@@ -45,6 +45,7 @@ function RaceForm({ races, setRaces, lengths }) {
                         year: '',
                         length_id: ""
                     })
+                    console.log(race)
                     navigate(`/users/${currentUser.id}`)
                 })
             } else {
