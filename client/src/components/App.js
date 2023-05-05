@@ -77,7 +77,7 @@ function App() {
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
             <Route path="/lengths/:id" element={<LengthsShow lengths={lengths} races={races}/>} />
-            <Route path="/new_race" element={<RaceForm races={races} setRaces={setRaces}/>}/> 
+            <Route path="/new_race" element={<RaceForm races={races} setRaces={setRaces} lengths={lengths}/>}/> 
             <Route path="/update_race" element={<UpdateRaceForm races={races} setRaces={setRaces}/>}/> 
           </Routes>
     </main>

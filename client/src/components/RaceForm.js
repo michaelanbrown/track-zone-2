@@ -3,25 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
 
-function RaceForm({ races, setRaces }) {
+function RaceForm({ races, setRaces, lengths }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
         name:'',
         year: '',
-        user_id: "",
         length_id: ""
     })
 
-    const {name, year, user_id, length_id} = formData
+    const {name, year, length_id} = formData
 
     function onSubmit(e){
         e.preventDefault()
         const race = {
             name,
             year,
-            user_id,
             length_id
         }   
         fetch(`/races`,{
@@ -43,7 +41,6 @@ function RaceForm({ races, setRaces }) {
                     setFormData({
                         name:'',
                         year: '',
-                        user_id: "",
                         length_id: ""
                     })
                     navigate(`/users/${currentUser.id}`)
@@ -61,6 +58,16 @@ function RaceForm({ races, setRaces }) {
         });
     }
 
+    function handleLengthChange(e) {
+        setFormData({
+            ...formData,
+            [e.target.id] : document.getElementById('length_id').value
+        });
+    }
+
+    const lengthOptions = ["", ...lengths].map(length => {
+        return (<option value={length.id} key={length.id ? length.id : ""}>{length.distance}{' '}{length.measurement}</option>)
+    })
 
         return (
             <> 
@@ -69,9 +76,9 @@ function RaceForm({ races, setRaces }) {
                 <br/>
                 Year: <input type='text' name='year' value={year} onChange={handleChange} />
                 <br/>
-                User: <input type='text' name='user_id' value={user_id} onChange={handleChange} />
-                <br/>
-                Length: <input type='text' name='length_id' value={length_id} onChange={handleChange} />
+                Length: <select id="length_id" onChange={handleLengthChange}>
+                {lengthOptions}
+                </select>
                 <br/>
                 <input type='submit' value='Create a Race!' />
             </form>
