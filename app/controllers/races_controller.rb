@@ -28,7 +28,7 @@ class RacesController < ApplicationController
     private
 
     def race_params
-        params.permit(:name, :year, :user_id, :length_id)
+        params.permit(:name, :year, :length_id).merge(user_id: current_user.id)
     end
     
     def update_race_params
