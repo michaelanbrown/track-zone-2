@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import { BrowserRouter } from "react-router-dom";
-import { RunnerProvider } from './context/Runner';
+import { UserProvider } from './context/User';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <RunnerProvider>
+  <UserProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </RunnerProvider>,
+  </UserProvider>,
 );
 
 

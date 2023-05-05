@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 const UserContext = React.createContext();
 
-function RunnerProvider({ children }) {
+function UserProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(false)
 
   return (
@@ -12,4 +12,4 @@ function RunnerProvider({ children }) {
   );
 }
 
-export { UserContext, RunnerProvider };
+export { UserContext, UserProvider };
