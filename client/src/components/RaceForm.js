@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
+import LengthForm from './LengthForm';
 
-function RaceForm({ races, setRaces, lengths, show, setShow }) {
+function RaceForm({ races, setRaces, lengths, show, setShow, lengthShow, setLengthShow }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const [lengthFormShow, setLengthFormShow] = useState(false)
     const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
         name:'',
@@ -69,10 +71,12 @@ function RaceForm({ races, setRaces, lengths, show, setShow }) {
     const lengthOptions = ["", ...lengths].map(length => {
         return (<option value={length.id} key={length.id ? length.id : ""}>{length.distance}{' '}{length.measurement}</option>)
     })
-    function onClick() {
-        console.log('click')
+
+    function onLengthClick() {
+        setLengthShow(true)
     }
 
+    const lengthForm = lengthShow ? <LengthForm lengthFormShow={lengthFormShow} setLengthFormShow={setLengthFormShow}/> : null
 
         return (
             <> 
@@ -84,8 +88,9 @@ function RaceForm({ races, setRaces, lengths, show, setShow }) {
                 Select a Length: <select id="length_id" onChange={handleLengthChange}>
                 {lengthOptions}
                 </select> Or {' '}
-                <button type="button" onClick={onClick} disabled={show}>Create New Length</button>
+                <button type="button" onClick={onLengthClick} disabled={show}>Create New Length</button>
                 <br/>
+                {lengthForm}
                 <input type='submit' value='Create a Race!' />
             </form>
             { errors ? <br/> : null }
