@@ -9,14 +9,6 @@ function UsersShow({  }) {
     const navigate = useNavigate();
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-
-    // const userLengths = currentUser.lengths.map(length => {
-    //     return (<><Link to={`/${length.id}`}>View Details</Link>
-    //     <Routes>
-    //         <Route path={`lengths/${length.id}`} element={<LengthsShow/>}/>
-    //     </Routes></>)
-    // })
-
     
         return (
             <div>
