@@ -13,7 +13,7 @@ function UsersShow({ lengths }) {
             <h1 className = "centering">{currentUser.name}</h1>
             <img className = "UserCardImg" src={currentUser.photo} alt={currentUser.name} width="40%" height="40%"/>
             <p>Age: {currentUser.age}</p>
-            {currentUser.lengths ? lengths.map(length => lengthIds.indexOf(length.id) > -1 ? <Link to={`/lengths/${length.id}`} key={length.id}><li>{length.distance}{' '}{length.measurement}</li></Link> : null) : null }
+            {currentUser.lengths ? lengths.map(length => lengthIds.indexOf(length.id) > -1 ? <Link to={`/users/${currentUser.id}/lengths/${length.id}`} key={length.id}><li>{length.distance}{' '}{length.measurement}</li></Link> : null) : null }
         </div>
     )
 }
