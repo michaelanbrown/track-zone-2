@@ -16,6 +16,14 @@ class ApplicationController < ActionController::API
     render json: { errors: {User: " Not Authorized"}}, status: :unauthorized unless current_user
   end
 
+  def find_race
+    @race = Race.find(params[:id])
+  end
+
+  def authorize_user
+    permitted = @race.user_id == current_user.id
+  end
+
   def render_unprocessable_entity_response(exception)
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
   end

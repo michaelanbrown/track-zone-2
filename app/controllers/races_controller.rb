@@ -1,5 +1,6 @@
 class RacesController < ApplicationController
     before_action :find_race, only: [:show, :update, :destroy]
+    before_action :authorize_user, only: [:show, :update, :destroy]
 
     def index 
         render json: Race.all, status: :ok
@@ -34,7 +35,4 @@ class RacesController < ApplicationController
         params.permit(:name, :year, :duration, :user_id, :length_id)
     end
 
-    def find_race
-        @race = Race.find(params[:id])
-    end
 end
