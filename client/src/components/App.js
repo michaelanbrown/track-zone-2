@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Header from './Header';
 import Welcome from './Welcome';
 import Login from './Login';
-import Users from './Users'
-import UsersShow from './UsersShow'
+import Users from './Users';
+import UsersShow from './UsersShow';
+import LengthsShow from './LengthsShow';
 import { UserContext } from '../context/User';
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow/>} />
+            <Route path="/lengths/:id" element={<LengthsShow/>} />
           </Routes>
     </main>
   );
