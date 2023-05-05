@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import './App.css';
 import { UserContext } from '../context/User';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 function UpdateRaceForm({ races, setRaces }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const { id } = useParams();
+    const navigate = useNavigate();
     const [errors, setErrors] = useState("")
     const [updateFormData, setUpdateFormData] = useState({
         name: "",
@@ -14,7 +16,7 @@ function UpdateRaceForm({ races, setRaces }) {
     });
 
     useEffect(() => {
-        fetch(`races/${id}`)
+        fetch(`/races/${id}`)
         .then((res) => {
             if (res.ok) {
               res.json()
@@ -65,11 +67,13 @@ function UpdateRaceForm({ races, setRaces }) {
             if(res.ok){
               res.json()
               .then(race => {
-                updateRaces(race)})
+                updateRaces(race)
+                navigate(`/users/${currentUser.id}/lengths/${race.length.id}`)})
             } else {
               res.json().then(json => setErrors(json.errors))
             }
     })}
+
 
         return (
             <div>

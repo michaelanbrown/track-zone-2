@@ -31,7 +31,7 @@ function Login({  }) {
             if(res.ok){
                 res.json().then(user => {
                     setCurrentUser(user)
-                    navigate(`/users/${currentUser.id}`)
+                    navigate(`/users/${user.id}`)
                 })
             } else {
                 res.json().then(json => setErrors([json.errors]))

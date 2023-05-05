@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import './App.css';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { UserContext } from '../context/User';
+import UpdateRaceForm from "./UpdateRaceForm";
 
 function LengthsShow({ lengths, races }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -15,7 +16,10 @@ function LengthsShow({ lengths, races }) {
             <div>
                 <h1>{currentLength ? currentLength.distance : null}{' '}{currentLength ? currentLength.measurement : null} Races!</h1>
                 <br/>
-                {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<p>Final Time: {race.duration}{' '}{' '}</p></li>) : null }
+                {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<br/>Final Time: {race.duration}{' '}{' '}
+                <br/>
+                <Link to={`/races/${race.id}`}>Update this race!</Link>
+                  </li>) : null }
             </div>
     )
 }
