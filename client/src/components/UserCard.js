@@ -7,9 +7,6 @@ import UsersShow from './UsersShow';
 function UserCard( { user }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-      const userRaces = user.races
-
-
         return (
             <div>
                 <h1>{user.name}</h1>
@@ -22,7 +19,7 @@ function UserCard( { user }) {
                   </Routes></> : null}
                 <p>Age: {user.age}</p>
                 Last Three Races:
-                {userRaces ? userRaces.map(race => <li>{race.name}</li>) : null }
+                {user.races ? user.races.map(race => <li key={race.id}>{race.name}</li>) : null }
                 <br/>
                 <br/>
             </div>
