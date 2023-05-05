@@ -33,18 +33,6 @@ function LengthForm({ lengths, setLengths }) {
                         distance:'',
                         measurement: ''
                     })
-                    // setCurrentUser({
-                    //     'id': currentUser.id,
-                    //     'age': currentUser.age,
-                    //     'email': currentUser.email,
-                    //     'name': currentUser.name,
-                    //     'photo': currentUser.photo,
-                    //     'races': currentUser.races,
-                    //     'username': currentUser.username,
-                    //     'lengths': [...currentUser.lengths, {
-                    //         length
-                    //     }]
-                    // })
                     navigate(`/new_race`)
                 })
             } else {

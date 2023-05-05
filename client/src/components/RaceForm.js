@@ -5,7 +5,7 @@ import { UserContext } from '../context/User';
 import { Link, Routes, Route } from 'react-router-dom';
 import LengthForm from './LengthForm';
 
-function RaceForm({ races, setRaces, lengths }) {
+function RaceForm({ races, setRaces, lengths, setLengths }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState([])
@@ -40,12 +40,22 @@ function RaceForm({ races, setRaces, lengths }) {
                         user: {id: race.user_id},
                         length_id: race.length_id
                     }])
+                    setCurrentUser({
+                        'id': currentUser.id,
+                        'age': currentUser.age,
+                        'email': currentUser.email,
+                        'name': currentUser.name,
+                        'photo': currentUser.photo,
+                        'races': [...currentUser.races, race],
+                        'username': currentUser.username,
+                        'lengths': [...currentUser.lengths,
+                            race.length]
+                    })
                     setFormData({
                         name:'',
                         year: '',
                         length_id: ""
                     })
-                    console.log(race)
                     navigate(`/users/${currentUser.id}`)
                 })
             } else {
