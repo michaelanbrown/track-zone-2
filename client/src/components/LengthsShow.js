@@ -7,13 +7,13 @@ function LengthsShow({ lengths, races }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const {id} = useParams();
 
-    const currentLength = lengths.filter(length => length.id == id)
+    const currentLength = (lengths.filter(length => length.id == id)[0])
     const userRaces = races.filter(race => race.user.id == currentUser.id && race.length.id == id)
-console.log(currentLength)
+    
 
         return (
             <div>
-                <h1>{currentLength[0].distance}{' '}{currentLength[0].measurement} Races!</h1>
+                <h1>{currentLength ? currentLength.distance : null}{' '}{currentLength ? currentLength.measurement : null} Races!</h1>
                 <br/>
                 {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<p>Final Time: {race.duration}</p></li>) : null }
             </div>
