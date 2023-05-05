@@ -13,7 +13,7 @@ console.log(currentLength)
 
         return (
             <div>
-                <h1>{currentLength.distance}{' '}{currentLength.measurement}</h1>
+                <h1>{currentLength[0].distance}{' '}{currentLength[0].measurement} Races!</h1>
                 <br/>
                 {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<p>Final Time: {race.duration}</p></li>) : null }
             </div>
