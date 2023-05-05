@@ -15,7 +15,7 @@ class RacesController < ApplicationController
     end
 
     def update
-        @race.update!(race_params)
+        @race.update!(update_race_params)
         render json: @race, status: :accepted
     end
 
@@ -25,8 +25,12 @@ class RacesController < ApplicationController
     end 
 
     private
-    
+
     def race_params
+        params.permit(:name, :year, :user_id, :length_id)
+    end
+    
+    def update_race_params
         params.permit(:name, :year, :duration, :user_id, :length_id)
     end
 
