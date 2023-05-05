@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useContext } from "react"
 import { Routes, Route } from "react-router-dom";
-// import Header from './Header';
+import Header from './Header';
 import Welcome from './Welcome';
 import { UserContext } from '../context/User';
 
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <main>
-        {/* <Header/> */}
+        <Header/>
           <Routes>
             <Route path="/" element={<Welcome/>} />
           </Routes>
