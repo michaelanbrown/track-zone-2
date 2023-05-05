@@ -69,6 +69,10 @@ function RaceForm({ races, setRaces, lengths, show, setShow }) {
     const lengthOptions = ["", ...lengths].map(length => {
         return (<option value={length.id} key={length.id ? length.id : ""}>{length.distance}{' '}{length.measurement}</option>)
     })
+    function onClick() {
+        console.log('click')
+    }
+
 
         return (
             <> 
@@ -80,7 +84,7 @@ function RaceForm({ races, setRaces, lengths, show, setShow }) {
                 Select a Length: <select id="length_id" onChange={handleLengthChange}>
                 {lengthOptions}
                 </select> Or {' '}
-                <button disabled={show}>Create New Length</button>
+                <button type="button" onClick={onClick} disabled={show}>Create New Length</button>
                 <br/>
                 <input type='submit' value='Create a Race!' />
             </form>
