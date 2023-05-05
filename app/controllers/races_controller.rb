@@ -32,7 +32,7 @@ class RacesController < ApplicationController
     end
     
     def update_race_params
-        params.permit(:name, :year, :duration, :user_id, :length_id)
+        params.permit(:name, :year, :duration)
     end
 
 end
