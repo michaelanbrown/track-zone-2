@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import './App.css';
 import { UserContext } from '../context/User';
 import { useParams } from "react-router-dom";
@@ -8,14 +8,26 @@ function UpdateRaceForm({ races, setRaces }) {
     const { id } = useParams();
     const [errors, setErrors] = useState("")
     const [updateFormData, setUpdateFormData] = useState({
-        full_name: "",
-        age: "",
-        photo: "",
-        username: "",
-        coach_id: "",
-        event_id: "",
-        admin: ""
+        name: "",
+        year: "",
+        duration: ""
     });
+
+    useEffect(() => {
+        fetch(`races/${id}`)
+        .then((res) => {
+            if (res.ok) {
+              res.json()
+              .then(race => {
+                setUpdateFormData({...updateFormData,
+                name: race.name,
+                year: race.year,
+                duration: race.duration})})
+            } else {
+                res.json().then(json => setErrors([json.error]))
+            }
+          })
+        },[])
 
     function handleFormChange(e) {
         setUpdateFormData({
@@ -35,13 +47,9 @@ function UpdateRaceForm({ races, setRaces }) {
         })
         setRaces(updatingRace)
         setUpdateFormData({...updateFormData,
-            full_name: updateFormData.full_name,
-            age: updateFormData.age,
-            photo: updateFormData.photo,
-            username: updateFormData.username,
-            coach_id: updateFormData.coach,
-            event_id: updateFormData.event,
-            admin: updateFormData.admin})
+            name: updateFormData.name,
+            year: updateFormData.year,
+            duration: updateFormData.duration})
     }
 
     function handleChange(e) {
@@ -70,13 +78,11 @@ function UpdateRaceForm({ races, setRaces }) {
                 <form onSubmit={handleChange}>
                 Enter your changes:
                 <br/>
-                Name: <input type="text" id="full_name" value={updateFormData.full_name} onChange={handleFormChange} placeholder="Full Name"/>
+                Race Name: <input type="text" id="name" value={updateFormData.name} onChange={handleFormChange}/>
                 <br/>
-                Age: <input type="text" id="age" value={updateFormData.age} onChange={handleFormChange} placeholder="Age"/>
+                Year: <input type="text" id="year" value={updateFormData.year} onChange={handleFormChange}/>
                 <br/>
-                Photo: <input type="text" id="photo" value={updateFormData.photo} onChange={handleFormChange} placeholder="Photo"/>
-                <br/>
-                Username: <input type="text" id="username" value={updateFormData.username} onChange={handleFormChange} placeholder="Username"/>
+                Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 0000:00:00"/>
                 <br/>
                 <br/>
                 <button className='submit'>Submit Changes</button>
