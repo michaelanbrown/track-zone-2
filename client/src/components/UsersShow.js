@@ -7,8 +7,6 @@ function RunnerShow({  }) {
     const navigate = useNavigate();
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [errors, setErrors] = useState("")
-
-
     
         return (
             <div>
