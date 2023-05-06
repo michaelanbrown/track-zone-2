@@ -5,7 +5,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :age, numericality: { greater_than_or_equal_to: 13 }
     validates :username, presence: true, uniqueness: true
-    validates :email, presence: true
+    validates :email, presence: true, uniqueness: true
 
     has_secure_password
 end
