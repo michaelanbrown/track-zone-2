@@ -70,9 +70,11 @@ function UpdateRaceForm({ races, setRaces }) {
                 updateRaces(race)
                 navigate(`/users/${currentUser.id}/lengths/${race.length.id}`)})
             } else {
-              res.json().then(json => setErrors([json.error]))
+              res.json().then(json => setErrors([json.errors]))
             }
     })}
+
+    console.log(errors)
 
         return (
             <div>
