@@ -74,7 +74,22 @@ function UpdateRaceForm({ races, setRaces }) {
             }
     })}
 
-    console.log(errors)
+    function deletedRace(deleted) {
+        const updatedRace = races.filter((race) => race.id !== deleted.id)
+        setRaces(updatedRace)
+    }
+
+    function handleRaceDelete(race) {
+        fetch(`${id}`, {
+            method:"DELETE"
+        })
+        .then(res =>{
+          if(res.ok){
+            deletedRace(race)
+            navigate(`/users/${currentUser.id}`)
+          }
+        })
+      }
 
         return (
             <div>
@@ -88,6 +103,9 @@ function UpdateRaceForm({ races, setRaces }) {
                 <br/>
                 <button className='submit'>Submit Changes</button>
                 </form>
+                Or
+                <br/>
+                <button onClick={handleRaceDelete}>Delete 🗑️</button>
                 {errors ? <br/> : null}
                 { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
             </div>
