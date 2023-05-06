@@ -56,7 +56,7 @@ function UpdateRaceForm({ races, setRaces }) {
 
     function handleChange(e) {
         e.preventDefault();
-        fetch(`${id}`, {
+        fetch(`1`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json",
@@ -86,11 +86,12 @@ function UpdateRaceForm({ races, setRaces }) {
                 <br/>
                 Year: <input type="text" id="year" value={updateFormData.year} onChange={handleFormChange}/>
                 <br/>
-                Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 0000:00:00"/>
+                Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
                 <br/>
                 <br/>
                 <button className='submit'>Submit Changes</button>
                 </form>
+                { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
             </div>
     )
 }
