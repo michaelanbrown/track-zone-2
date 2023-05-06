@@ -10,11 +10,11 @@ function UpdateRaceForm({ races, setRaces }) {
     const navigate = useNavigate();
     const [errors, setErrors] = useState("")
     const [race, setRace] = useState({})
+    const [length, setLength] = useState({})
     const [updateFormData, setUpdateFormData] = useState({
         name: "",
         year: "",
-        duration: "",
-        length: ""
+        duration: ""
     });
 
     useEffect(() => {
@@ -24,11 +24,11 @@ function UpdateRaceForm({ races, setRaces }) {
               res.json()
               .then(race => {
                 setRace(race)
+                setLength(race.length)
                 setUpdateFormData({...updateFormData,
                 name: race.name,
                 year: race.year,
-                duration: race.duration,
-                length: race.length})})
+                duration: race.duration})})
             } else {
                 res.json().then(json => setErrors([json.error]))
             }
@@ -55,8 +55,7 @@ function UpdateRaceForm({ races, setRaces }) {
         setUpdateFormData({...updateFormData,
             name: updateFormData.name,
             year: updateFormData.year,
-            duration: updateFormData.duration,
-            length: updateFormData.length})
+            duration: updateFormData.duration})
     }
 
     function handleChange(e) {
@@ -91,7 +90,24 @@ function UpdateRaceForm({ races, setRaces }) {
             year: updateFormData.year,
             duration: updateFormData.duration})
     }
-
+    // function lengthRender() {
+    //     let checkedLengths = []
+    //     const renderedLengths = currentUser.lengths.map(leng => {
+    //         if (leng.id !== length.id) {
+    //             checkedLengths.push(leng)
+    //             console.log(checkedLengths)
+    //             return leng
+    //         } if (leng.id == length.id && checkedLengths.indexOf(leng) <= -1) {
+    //             checkedLengths.push(leng)
+    //             console.log(checkedLengths)
+    //             return null
+    //         } if (leng.id == length.id && checkedLengths.indexOf(leng) >= 0) {
+    //             console.log(checkedLengths)
+    //             return leng
+    //         }
+    //     })
+    //     console.log(renderedLengths)
+    // }
 
     function handleRaceDelete() {
         fetch(`${id}`, {
@@ -105,7 +121,17 @@ function UpdateRaceForm({ races, setRaces }) {
                     return currRace
                 }
             })
-            
+            let lengthHolder = []
+            const currentLengths = currentUser.lengths.filter(currLength => {
+                if (currLength.id !== length.id) {
+                    lengthHolder.push(currLength.id)
+                    return currLength
+                } else if (currLength.id == length.id && lengthHolder.indexOf(currLength.id) < 0) {
+                    lengthHolder.push(currLength.id)
+                } else {
+                    return currLength
+                }
+            })
             setCurrentUser({
                 'id': currentUser.id,
                 'age': currentUser.age,
@@ -114,7 +140,7 @@ function UpdateRaceForm({ races, setRaces }) {
                 'photo': currentUser.photo,
                 'races': currentRaces,
                 'username': currentUser.username,
-                'lengths': currentUser.lengths
+                'lengths': currentLengths
             })
             navigate(`/users/${currentUser.id}`)
           }
