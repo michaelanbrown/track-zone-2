@@ -80,12 +80,9 @@ function UpdateRaceForm({ races, setRaces }) {
     })}
 
     function deleteRace(deletedRace) {
-        const deletingRace = races.map((race) => {
+        const deletingRace = races.filter((race) => {
             if (race.id !== deletedRace.id) {
-                setCurrentUser(currentUser)
                 return deletedRace
-            } else {
-                return race
             }
         })
         setRaces(deletingRace)
@@ -108,6 +105,7 @@ function UpdateRaceForm({ races, setRaces }) {
                     return currRace
                 }
             })
+            
             setCurrentUser({
                 'id': currentUser.id,
                 'age': currentUser.age,
