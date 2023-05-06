@@ -5,7 +5,7 @@ import { UserContext } from '../context/User';
 import { Link, Routes, Route } from 'react-router-dom';
 import LengthForm from './LengthForm';
 
-function RaceForm({ races, setRaces, lengths, setLengths }) {
+function RaceForm({ races, setRaces, lengths }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState([])

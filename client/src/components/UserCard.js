@@ -21,7 +21,8 @@ function UserCard( { user }) {
                   </Routes></> : null}
                 <p>Age: {user.age}</p>
                 Last Three Races:
-                {currentUser.id == user.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) }
+                {user.id !== currentUser.id ? userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
+                {user.id == currentUser.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 <br/>
                 <br/>
             </div>
