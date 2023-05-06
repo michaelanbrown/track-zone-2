@@ -6,6 +6,8 @@ import UsersShow from './UsersShow';
 
 function UserCard( { user }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
+    const userLastThreeRaces = user.races.slice(-3)
+    const currentUserLastThreeRaces = currentUser.races.slice(-3)
 
         return (
             <div>
@@ -19,7 +21,7 @@ function UserCard( { user }) {
                   </Routes></> : null}
                 <p>Age: {user.age}</p>
                 Last Three Races:
-                {user.races ? user.races.map(race => <li key={race.id}>{race.name}</li>) : null }
+                {currentUser.id == user.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) }
                 <br/>
                 <br/>
             </div>

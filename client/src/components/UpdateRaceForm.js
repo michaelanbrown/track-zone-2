@@ -101,9 +101,12 @@ function UpdateRaceForm({ races, setRaces }) {
                 <br/>
                 Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
                 <br/>
+                <br/>
                 <button className='submit'>Submit Changes</button>
                 </form>
+                <br/>
                 Or
+                <br/>
                 <br/>
                 <button onClick={handleRaceDelete}>Delete 🗑️</button>
                 {errors ? <br/> : null}
