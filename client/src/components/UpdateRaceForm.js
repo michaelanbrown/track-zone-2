@@ -74,9 +74,20 @@ function UpdateRaceForm({ races, setRaces }) {
             }
     })}
 
-    function deletedRace(deleted) {
-        const updatedRace = races.filter((race) => race.id !== deleted.id)
-        setRaces(updatedRace)
+    function deleteRace(deletedRace) {
+        const deletingRace = races.map((race) => {
+            if (race.id !== deletedRace.id) {
+                setCurrentUser(currentUser)
+                return deletedRace
+            } else {
+                return race
+            }
+        })
+        setRaces(deletingRace)
+        setUpdateFormData({...updateFormData,
+            name: updateFormData.name,
+            year: updateFormData.year,
+            duration: updateFormData.duration})
     }
 
     function handleRaceDelete(race) {
@@ -85,7 +96,17 @@ function UpdateRaceForm({ races, setRaces }) {
         })
         .then(res =>{
           if(res.ok){
-            deletedRace(race)
+            deleteRace(race)
+            setCurrentUser({
+                'id': currentUser.id,
+                'age': currentUser.age,
+                'email': currentUser.email,
+                'name': currentUser.name,
+                'photo': currentUser.photo,
+                'races': currentUser.races.filter(current => current.id !== race.id),
+                'username': currentUser.username,
+                'lengths': currentUser.lengths
+            })
             navigate(`/users/${currentUser.id}`)
           }
         })
