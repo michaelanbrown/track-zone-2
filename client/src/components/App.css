@@ -70,3 +70,15 @@ body{
   color: rgb(156, 13, 13);
   font-weight: bold;
 }
+
+.delete {
+  font-size: 93%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+  color: navy;
+  margin-left: 3%;
+}

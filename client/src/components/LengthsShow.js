@@ -18,7 +18,7 @@ function LengthsShow({ lengths, races }) {
                 <br/>
                 {userRaces ? userRaces.map(race => <li key={race.id}>{race.name}{' - '}{race.year}<br/>Final Time: {race.duration}{' '}{' '}
                 <br/>
-                <Link to={`/races/${race.id}`}>Update this race!</Link>
+                <span><Link to={`/races/${race.id}`}>Update this race!</Link>{' '}{' '}<button className="delete">Delete 🗑️</button></span>
                   </li>) : null }
             </div>
     )
