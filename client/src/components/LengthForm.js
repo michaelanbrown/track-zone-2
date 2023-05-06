@@ -61,7 +61,7 @@ function LengthForm({ lengths, setLengths }) {
         });
     }
 
-    const errorMap = errors.map(error => <li class="error">{error}</li>)
+    const errorMap = errors.map(error => <div key={error} className="error">{error}</div>)
 
   return (
     <div>
