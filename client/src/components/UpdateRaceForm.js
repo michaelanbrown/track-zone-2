@@ -155,7 +155,7 @@ function UpdateRaceForm({ races, setRaces }) {
             <br/>
             Year: <input type="text" id="year" value={updateFormData.year} onChange={handleFormChange}/>
             <br/>
-            Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
+            Duration (format 00:00:00): <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
             <br/>
             <br/>
             <button className='submit'>Submit Changes</button>
