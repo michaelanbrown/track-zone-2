@@ -35,6 +35,7 @@ function App() {
     })
   },[])
 
+
   function getUsers() {
     fetch("/users")
     .then((res) => {
@@ -68,6 +69,8 @@ function App() {
     })
   }
 
+  console.log(currentUser)
+
   return (
     <main>
         <Header/>
@@ -76,11 +79,11 @@ function App() {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
-            <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
+            <Route path="/users/:id" element={<UsersShow />} />
             <Route path="/users/:id/lengths/:id/*" element={<LengthsShow lengths={lengths} races={races}/>} />
             <Route path="/new_race/*" element={<RaceForm races={races} setRaces={setRaces} lengths={lengths} setLengths={setLengths}/>}/> 
             <Route path="/new_length" element={<LengthForm lengths={lengths} setLengths={setLengths}/>}/>
-            <Route path="/races/:id" element={<UpdateRaceForm races={races} setRaces={setRaces}/>}/>
+            <Route path="/races/:id" element={<UpdateRaceForm races={races} setRaces={setRaces} />}/>
           </Routes>
     </main>
   );

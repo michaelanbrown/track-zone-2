@@ -9,10 +9,12 @@ function UpdateRaceForm({ races, setRaces }) {
     const { id } = useParams();
     const navigate = useNavigate();
     const [errors, setErrors] = useState("")
+    const [race, setRace] = useState({})
     const [updateFormData, setUpdateFormData] = useState({
         name: "",
         year: "",
-        duration: ""
+        duration: "",
+        length: ""
     });
 
     useEffect(() => {
@@ -21,10 +23,12 @@ function UpdateRaceForm({ races, setRaces }) {
             if (res.ok) {
               res.json()
               .then(race => {
+                setRace(race)
                 setUpdateFormData({...updateFormData,
                 name: race.name,
                 year: race.year,
-                duration: race.duration})})
+                duration: race.duration,
+                length: race.length})})
             } else {
                 res.json().then(json => setErrors([json.error]))
             }
@@ -51,7 +55,8 @@ function UpdateRaceForm({ races, setRaces }) {
         setUpdateFormData({...updateFormData,
             name: updateFormData.name,
             year: updateFormData.year,
-            duration: updateFormData.duration})
+            duration: updateFormData.duration,
+            length: updateFormData.length})
     }
 
     function handleChange(e) {
@@ -90,49 +95,55 @@ function UpdateRaceForm({ races, setRaces }) {
             duration: updateFormData.duration})
     }
 
-    function handleRaceDelete(race) {
+
+    function handleRaceDelete() {
         fetch(`${id}`, {
             method:"DELETE"
         })
         .then(res =>{
           if(res.ok){
             deleteRace(race)
+            const currentRaces = currentUser.races.filter(currRace => {
+                if (currRace.id !== race.id) {
+                    return currRace
+                }
+            })
             setCurrentUser({
                 'id': currentUser.id,
                 'age': currentUser.age,
                 'email': currentUser.email,
                 'name': currentUser.name,
                 'photo': currentUser.photo,
-                'races': currentUser.races.filter(current => current.id !== race.id),
+                'races': currentRaces,
                 'username': currentUser.username,
                 'lengths': currentUser.lengths
             })
             navigate(`/users/${currentUser.id}`)
           }
         })
-      }
-
-        return (
-            <div>
-                <form onSubmit={handleChange}>
-                <h1>Enter your changes:</h1>
-                Race Name: <input type="text" id="name" value={updateFormData.name} onChange={handleFormChange}/>
-                <br/>
-                Year: <input type="text" id="year" value={updateFormData.year} onChange={handleFormChange}/>
-                <br/>
-                Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
-                <br/>
-                <br/>
-                <button className='submit'>Submit Changes</button>
-                </form>
-                <br/>
-                Or
-                <br/>
-                <br/>
-                <button onClick={handleRaceDelete}>Delete 🗑️</button>
-                {errors ? <br/> : null}
-                { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
-            </div>
+    }
+      
+    return (
+        <div>
+            <form onSubmit={handleChange}>
+            <h1>Enter your changes:</h1>
+            Race Name: <input type="text" id="name" value={updateFormData.name} onChange={handleFormChange}/>
+            <br/>
+            Year: <input type="text" id="year" value={updateFormData.year} onChange={handleFormChange}/>
+            <br/>
+            Duration: <input type="text" id="duration" value={updateFormData.duration} onChange={handleFormChange} placeholder="Format: 00:00:00"/>
+            <br/>
+            <br/>
+            <button className='submit'>Submit Changes</button>
+            </form>
+            <br/>
+            Or
+            <br/>
+            <br/>
+            <button onClick={handleRaceDelete}>Delete 🗑️</button>
+            {errors ? <br/> : null}
+            { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
+        </div>
     )
 }
 
