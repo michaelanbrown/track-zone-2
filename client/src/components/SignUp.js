@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
 
-function Signup({  }) {
+function Signup({ users, setUsers, getUsers }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
@@ -37,6 +37,8 @@ function Signup({  }) {
             if(res.ok){
                 res.json().then(user => {
                     setCurrentUser(user)
+                    getUsers()
+                    setUsers([...users, user])
                     navigate(`/users/${user.id}`)
                 })
             } else {

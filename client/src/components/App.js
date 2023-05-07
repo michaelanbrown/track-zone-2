@@ -74,7 +74,7 @@ function App() {
         <Header/>
           <Routes>
             <Route path="/" element={<Welcome/>} />
-            <Route path="/signup" element={<Signup/>} />
+            <Route path="/signup" element={<Signup users={users} setUsers={setUsers} getUsers={getUsers}/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
