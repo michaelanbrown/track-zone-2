@@ -1,4 +1,5 @@
 class LengthsController < ApplicationController
+    skip_before_action :authenticate_user, only: [:index]
 
     def index 
         render json: Length.all, status: :ok

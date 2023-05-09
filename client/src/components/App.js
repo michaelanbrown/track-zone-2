@@ -27,12 +27,12 @@ function App() {
         res.json()
         .then((user) => {
           setCurrentUser(user);
-          getUsers();
-          getLengths();
-          getRaces();
         });
       }
     })
+    getUsers();
+    getLengths();
+    getRaces();
   },[])
 
 
@@ -74,8 +74,8 @@ function App() {
         <Header/>
           <Routes>
             <Route path="/" element={<Welcome/>} />
-            <Route path="/signup" element={<Signup users={users} setUsers={setUsers} getUsers={getUsers} getRaces={getRaces} getLengths={getLengths}/>} />
-            <Route path="/login" element={<Login setUsers={setUsers} getUsers={getUsers} getRaces={getRaces} getLengths={getLengths}/>} />
+            <Route path="/signup" element={<Signup users={users} setUsers={setUsers}/>} />
+            <Route path="/login" element={<Login/>} />
             <Route path="/users/*" element={<Users users={users}/>} />
             <Route path="/users/:id" element={<UsersShow lengths={lengths}/>} />
             <Route path="/users/:id/lengths/:id/*" element={<LengthsShow lengths={lengths} races={races}/>} />

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { UserContext } from '../context/User';
 
-function Login({ getUsers, getRaces, getLengths }) {
+function Login({ }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const [errors, setErrors] = useState([])
@@ -31,9 +31,6 @@ function Login({ getUsers, getRaces, getLengths }) {
             if(res.ok){
                 res.json().then(user => {
                     setCurrentUser(user)
-                    getUsers();
-                    getLengths();
-                    getRaces();
                     navigate(`/users/${user.id}`)
                 })
             } else {

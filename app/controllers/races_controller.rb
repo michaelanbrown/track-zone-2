@@ -1,6 +1,7 @@
 class RacesController < ApplicationController
     before_action :find_race, only: [:show, :update, :destroy]
     before_action :authorize_user, only: [:show, :update, :destroy]
+    skip_before_action :authenticate_user, only: [:index]
 
     def index 
         render json: Race.all, status: :ok
