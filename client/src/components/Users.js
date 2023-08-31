@@ -14,17 +14,18 @@ function User({ users, setUsers, getUsers }) {
 
     function getUserSearch(e) {
         e.preventDefault();
-        if (search='') {
+        if (search === '') {
             getUsers()
+        } else {
+            fetch(`/user_search/${search}`)
+            .then((res) => {
+            if(res.ok){
+                res.json().then(setUsers)
+            } else {
+                res.json().then(json => setErrors([json.errors]))
+            }
+            })
         }
-        fetch(`/user_search/${search}`)
-        .then((res) => {
-          if(res.ok){
-            res.json().then(setUsers)
-          } else {
-            res.json().then(json => setErrors([json.errors]))
-          }
-        })
       }
 
 
