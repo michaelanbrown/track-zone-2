@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './App.css';
 import { UserContext } from '../context/User';
 import UserCard from './UserCard';
 
 function User({ users }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
+    const [search, setSearch] = useState({
+        search: ''
+    })
 
     const userRender = users.map (user => {
         return (
