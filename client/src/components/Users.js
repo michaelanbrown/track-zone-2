@@ -8,9 +8,7 @@ function User({ users }) {
     const [search, setSearch] = useState('')
 
     function handleChange(e) {
-        setSearch({
-            [e.target.name] : e.target.value
-        });
+        setSearch(e.target.value);
     }
 
     const userRender = users.map (user => {
@@ -21,6 +19,7 @@ function User({ users }) {
 
         return (
             <div>
+                <br/>
                 <form>
                     Search: <input type='text' name='search' placeholder='Search Here' value={search} onChange={handleChange} />
                 </form>
