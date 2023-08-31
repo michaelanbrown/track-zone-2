@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user, only: [:index, :create]
+    skip_before_action :authenticate_user, only: [:index, :create, :user_search]
 
     def index 
         render json: User.all, status: :ok
@@ -17,7 +17,8 @@ class UsersController < ApplicationController
 
     def user_search
         users = User.where("username LIKE ?", "%#{params[:search]}%")
-        render json: users, status: :ok
+        if users.size > 0
+            render json: users, status: :ok
         else
             render json: { errors: "Not authorized" }, status: :unprocessable_entity
         end
