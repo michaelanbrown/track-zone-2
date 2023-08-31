@@ -32,6 +32,12 @@ function User({ users }) {
         )
     })
 
+    const userSearchRender = userSearch.map (user => {
+        return (
+            <UserCard user={user} key={user.id}/>
+        )
+    })
+
         return (
             <div>
                 <br/>
