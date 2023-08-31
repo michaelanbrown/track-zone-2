@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get "/races/:users_with_year", to: "races#users_with_year"
   
   resources :races
   resources :lengths, only: [:index, :create]

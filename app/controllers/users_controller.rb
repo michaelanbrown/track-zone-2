@@ -15,6 +15,10 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    def user_search
+        
+    end
+
     private 
 
     def user_params

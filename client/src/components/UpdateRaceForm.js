@@ -45,7 +45,6 @@ function UpdateRaceForm({ races, setRaces }) {
     function updateRaces(updatedRace) {
         const updatingRace = races.map((race) => {
             if (race.id === updatedRace.id) {
-                setCurrentUser(currentUser)
                 return updatedRace
             } else {
                 return race
@@ -166,7 +165,7 @@ function UpdateRaceForm({ races, setRaces }) {
             <br/>
             <button onClick={handleRaceDelete}>Delete 🗑️</button>
             {errors ? <br/> : null}
-            { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
+            { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) : null }
         </div>
     )
 }

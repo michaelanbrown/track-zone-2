@@ -18,3 +18,7 @@ l3 = Length.create(distance: 10, measurement: "km")
 e1 = Race.create(name: "Boston Marathon", year: 2022, duration: "04:35:58",user_id: u1.id, length_id: l1.id)
 e2 = Race.create(name: "Run to Feed the Hungry", year: 2018, duration: "00:55:23", user_id: u2.id, length_id: l3.id)
 e3 = Race.create(name: "Boston Marathon", year: 2022, duration: "00:38:35", user_id: u3.id, length_id: l2.id)
+
+# Create a custom route that takes in an parameter of a year. You can assume the year will come in as a 4 digit number. Use the year to find all race results after that year. Then render back the users who are associated with those races. If no races are found render a message that says so.
+
+#year is in races - races controller
