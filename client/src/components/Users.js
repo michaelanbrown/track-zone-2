@@ -14,6 +14,7 @@ function User({ users, setUsers, getUsers }) {
 
     function getUserSearch(e) {
         e.preventDefault();
+        setErrors(false)
         if (search === '') {
             getUsers()
         } else {
