@@ -3,7 +3,7 @@ import './App.css';
 import { UserContext } from '../context/User';
 import UserCard from './UserCard';
 
-function User({ users, setUsers }) {
+function User({ users, setUsers, getUsers }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [search, setSearch] = useState('')
     const [errors, setErrors] = useState(false)
@@ -14,6 +14,9 @@ function User({ users, setUsers }) {
 
     function getUserSearch(e) {
         e.preventDefault();
+        if (search='') {
+            getUsers()
+        }
         fetch(`/user_search/${search}`)
         .then((res) => {
           if(res.ok){
