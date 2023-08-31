@@ -5,9 +5,13 @@ import UserCard from './UserCard';
 
 function User({ users }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
-    const [search, setSearch] = useState({
-        search: ''
-    })
+    const [search, setSearch] = useState('')
+
+    function handleChange(e) {
+        setSearch({
+            [e.target.name] : e.target.value
+        });
+    }
 
     const userRender = users.map (user => {
         return (
@@ -18,7 +22,7 @@ function User({ users }) {
         return (
             <div>
                 <form>
-                    Search: <input type='text' name='search' value={search} onChange={handleChange} />
+                    Search: <input type='text' name='search' placeholder='Search Here' value={search} onChange={handleChange} />
                 </form>
                 { users ? userRender : null }
             </div>
