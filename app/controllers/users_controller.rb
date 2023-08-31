@@ -16,11 +16,11 @@ class UsersController < ApplicationController
     end
 
     def user_search
-        users = User.where("username LIKE ?", "%#{params[:search]}%")
+        users = User.where("username LIKE ?", "%#{params[:search]}%") || User.where("name LIKE ?", "%#{params[:search]}%")
         if users.size > 0
             render json: users, status: :ok
         else
-            render json: { errors: "No such user" }, status: :unprocessable_entity
+            render json: { errors: "No users found" }, status: :unprocessable_entity
         end
     end
 
