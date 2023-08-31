@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
 
     def user_search
+        users = User.where("username LIKE ?", "%#{params[:search]}%")
         else
             render json: { errors: "Not authorized" }, status: :unprocessable_entity
         end
