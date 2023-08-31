@@ -13,7 +13,8 @@ function User({ users }) {
         setSearch(e.target.value);
     }
 
-    function getUserSearch() {
+    function getUserSearch(e) {
+        e.preventDefault();
         fetch(`/user_search/${search}`)
         .then((res) => {
           if(res.ok){
