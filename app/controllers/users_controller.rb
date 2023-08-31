@@ -16,7 +16,9 @@ class UsersController < ApplicationController
     end
 
     def user_search
-        
+        else
+            render json: { errors: "Not authorized" }, status: :unprocessable_entity
+        end
     end
 
     private 
