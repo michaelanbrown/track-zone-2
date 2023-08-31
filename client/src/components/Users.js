@@ -13,7 +13,12 @@ function User({ users }) {
     })
 
         return (
-            <div>{ users ? userRender : null }</div>
+            <div>
+                <form>
+                    Search: <input type='text' name='search' value={search} onChange={handleChange} />
+                </form>
+                { users ? userRender : null }
+            </div>
     )
 }
 
