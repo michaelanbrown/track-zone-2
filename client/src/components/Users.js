@@ -22,6 +22,8 @@ function User({ users }) {
                 <br/>
                 <form>
                     Search: <input type='text' name='search' placeholder='Search Here' value={search} onChange={handleChange} />
+                    {" "}
+                    <button>🔍</button>
                 </form>
                 { users ? userRender : null }
             </div>
