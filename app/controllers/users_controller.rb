@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user, only: [:index, :create, :user_search]
+    skip_before_action :authenticate_user, only: [:index, :create]
 
     def index 
         render json: User.all, status: :ok
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         if users.size > 0
             render json: users, status: :ok
         else
-            render json: { errors: "Not authorized" }, status: :unprocessable_entity
+            render json: { errors: "No such user" }, status: :unprocessable_entity
         end
     end
 
