@@ -41,7 +41,8 @@ function User({ users }) {
                     <button>🔍</button>
                 </form>
                 { users && !errors ? userRender : null }
-                { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
+                { errors ? <br/> : null }
+                { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) : null }
             </div>
     )
 }
