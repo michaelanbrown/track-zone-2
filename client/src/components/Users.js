@@ -3,10 +3,9 @@ import './App.css';
 import { UserContext } from '../context/User';
 import UserCard from './UserCard';
 
-function User({ users }) {
+function User({ users, setUsers }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [search, setSearch] = useState('')
-    const [userSearch, setUserSearch] = useState([])
     const [errors, setErrors] = useState(false)
 
     function handleChange(e) {
@@ -18,7 +17,7 @@ function User({ users }) {
         fetch(`/user_search/${search}`)
         .then((res) => {
           if(res.ok){
-            res.json().then(setUserSearch)
+            res.json().then(setUsers)
           } else {
             res.json().then(json => setErrors([json.errors]))
           }
@@ -32,11 +31,6 @@ function User({ users }) {
         )
     })
 
-    const userSearchRender = userSearch.map (user => {
-        return (
-            <UserCard user={user} key={user.id}/>
-        )
-    })
 
         return (
             <div>
