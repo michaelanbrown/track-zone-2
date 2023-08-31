@@ -20,12 +20,11 @@ function User({ users }) {
           if(res.ok){
             res.json().then(setUserSearch)
           } else {
-            res.json().then(json => setErrors([json.error]))
+            res.json().then(json => setErrors([json.errors]))
           }
         })
       }
 
-      console.log(userSearch)
 
     const userRender = users.map (user => {
         return (
@@ -41,7 +40,8 @@ function User({ users }) {
                     {" "}
                     <button>🔍</button>
                 </form>
-                { users ? userRender : null }
+                { users && !errors ? userRender : null }
+                { errors ? errors.map(error => <div className='error' key={error}>{error}</div>) :null }
             </div>
     )
 }
