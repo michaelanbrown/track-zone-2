@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   resources :races
   resources :lengths, only: [:index, :create]
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:index, :show, :create, :update]
 
   post "/login", to: "sessions#create" 
   delete "/logout", to: "sessions#destroy"
