@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
+        params.permit(:likes)
     end
 
 end
