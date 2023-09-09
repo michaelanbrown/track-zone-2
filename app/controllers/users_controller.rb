@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user, only: [:index, :create]
+    skip_before_action :authenticate_user, only: [:index, :create, :update]
 
     def index 
         render json: User.all, status: :ok
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.permit(:likes)
+        params.permit(:likes, :name)
     end
 
 end

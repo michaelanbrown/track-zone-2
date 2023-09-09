@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2023_09_09_215651) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "likes", default: [], array: true
+    t.text "likes", default: [], array: true
   end
 
   add_foreign_key "races", "lengths"
