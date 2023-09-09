@@ -15,6 +15,10 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    def update
+        
+    end
+
     def user_search
         users = User.where("username LIKE ?", "%#{params[:search]}%") || User.where("name LIKE ?", "%#{params[:search]}%")
         if users.size > 0
