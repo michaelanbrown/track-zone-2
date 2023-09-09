@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
     def update
         @update_user = User.find(params[:id])
+        @update_user.update!(update_user_params)
+        render json: @update_user, status: :accepted
     end
 
     def user_search
