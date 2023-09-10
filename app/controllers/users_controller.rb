@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
 
     def user_search
-        users = User.where("username ILIKE ?", "%#{params[:search]}%") || User.where("name ILIKE ?", "%#{params[:search]}%")
+        users = User.where("username ILIKE ? or name ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
         if users.size > 0
             render json: users, status: :ok
         else
