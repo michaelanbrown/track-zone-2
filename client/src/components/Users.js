@@ -30,6 +30,7 @@ function User({ users, setUsers, getUsers }) {
       }
 
 
+
     const userRender = users.map (user => {
         return (
             <UserCard user={user} key={user.id}/>

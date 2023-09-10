@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user, only: [:index, :create, :update]
+    skip_before_action :authenticate_user, only: [:index, :create, :update, :user_search]
 
     def index 
         render json: User.all, status: :ok
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
 
     def user_search
-        users = User.where("username LIKE ?", "%#{params[:search]}%") || User.where("name LIKE ?", "%#{params[:search]}%")
+        users = User.where("username ILIKE ?", "%#{params[:search]}%") || User.where("name ILIKE ?", "%#{params[:search]}%")
         if users.size > 0
             render json: users, status: :ok
         else
