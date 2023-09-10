@@ -26,6 +26,7 @@ function UserCard( { user }) {
               if(res.ok){
                 res.json()
                 .then(setLikesArray(likesArray.filter((liker) => liker !== currentUser.username)))
+                .then(setLiked(!liked))
               } else {
                 res.json().then(json => setErrors([json.errors]))
               }
