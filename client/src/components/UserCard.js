@@ -23,6 +23,7 @@ function UserCard( { user }) {
                 Last Three Races:
                 {user.id !== currentUser.id ? userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 {user.id == currentUser.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
+                <p>{user.likes.length} Likes</p>
                 <br/>
                 <br/>
             </div>
