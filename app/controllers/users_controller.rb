@@ -21,7 +21,8 @@ class UsersController < ApplicationController
             @update_user.update!(likes: [])
         else
             @update_user.update!(likes: params[:likes])
-        render json: @update_user, status: :accepted
+            render json: @update_user, status: :accepted
+        end
     end
 
     def user_search
