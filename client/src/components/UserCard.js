@@ -48,7 +48,7 @@ function UserCard( { user }) {
                 {user.id !== currentUser.id ? userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 {user.id == currentUser.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 <p>{liked ? <button className='like' onClick={handleLikeButton}>"❤️"</button> : <button className='like' onClick={handleLikeButton}>"♡"</button>}{" "}
-                  {user.likes.length !== 1 ? `${user.likes.length} Likes` : `${user.likes.length} Like`}</p>
+                  {likesArray.length !== 1 ? `${likesArray.length} Likes` : `${likesArray.length} Like`}</p>
                 <br/>
                 <br/>
             </div>
