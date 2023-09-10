@@ -8,9 +8,6 @@ function UserCard( { user }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const userLastThreeRaces = user.races.slice(-3)
     const currentUserLastThreeRaces = currentUser.races.slice(-3)
-    // ♡
-    // ❤️
-    console.log(user.likes.indexOf(currentUser.username) > -1)
 
         return (
             <div>
@@ -26,7 +23,7 @@ function UserCard( { user }) {
                 Last Three Races:
                 {user.id !== currentUser.id ? userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 {user.id == currentUser.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
-                <p>{user.likes.indexOf(currentUser.username) > -1 ? "❤️" : "♡"}{" "}
+                <p>{user.likes.indexOf(currentUser.username) > -1 ? <button className='like'>"❤️"</button> : <button className='like'>"♡"</button>}{" "}
                   {user.likes.length !== 1 ? `${user.likes.length} Likes` : `${user.likes.length} Like`}</p>
                 <br/>
                 <br/>
