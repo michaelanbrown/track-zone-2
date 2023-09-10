@@ -9,6 +9,26 @@ function UserCard( { user }) {
     const userLastThreeRaces = user.races.slice(-3)
     const currentUserLastThreeRaces = currentUser.races.slice(-3)
     const [liked, setLiked] = useState(user.likes.indexOf(currentUser.username) > -1)
+    const [likesArray, setLikesArray] = useState(user.likes)
+
+    // function handleLikeButton(e) {
+    //   e.preventDefault();
+    //   fetch(`${id}`, {
+    //       method: "PATCH",
+    //       headers: {
+    //           "Content-Type" : "application/json",
+    //           "Accept" : "application/json"
+    //       },
+    //       body: JSON.stringify(updateFormData)
+    //       }).then((res) => {
+    //           if(res.ok){
+    //             res.json()
+    //             .then(race => {
+    //               updateRaces(race)})
+    //           } else {
+    //             res.json().then(json => setErrors([json.errors]))
+    //           }
+    //   })}
 
         return (
             <div>
