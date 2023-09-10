@@ -21,7 +21,7 @@ function UserCard( { user }) {
               "Content-Type" : "application/json",
               "Accept" : "application/json"
           },
-          body: JSON.stringify(likesArray.filter((liker) => liker !== currentUser.username))
+          body: JSON.stringify({likes:likesArray.filter((liker) => liker !== currentUser.username)})
           }).then((res) => {
               if(res.ok){
                 res.json()
@@ -30,15 +30,14 @@ function UserCard( { user }) {
               } else {
                 res.json().then(json => setErrors([json.errors]))
               }
-        })}
-        else {
+        })} else {
           fetch(`${user.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json",
                 "Accept" : "application/json"
             },
-            body: JSON.stringify([...likesArray, currentUser.username])
+            body: JSON.stringify({likes: [...likesArray, currentUser.username]})
             }).then((res) => {
                 if(res.ok){
                   res.json()
