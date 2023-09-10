@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     def update
         @update_user = User.find(params[:id])
-        if params[:likes] == null
+        if params[:likes] == nil
             @update_user.update!(likes: [])
         else
             @update_user.update!(likes: params[:likes])
