@@ -31,6 +31,24 @@ function UserCard( { user }) {
                 res.json().then(json => setErrors([json.errors]))
               }
         })}
+        else {
+          fetch(`${user.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "application/json"
+            },
+            body: JSON.stringify([...likesArray, currentUser.username])
+            }).then((res) => {
+                if(res.ok){
+                  res.json()
+                  .then(setLikesArray([...likesArray, currentUser.username]))
+                  .then(setLiked(!liked))
+                } else {
+                  res.json().then(json => setErrors([json.errors]))
+                }
+          })
+        }
       }
 
         return (
