@@ -17,7 +17,10 @@ class UsersController < ApplicationController
 
     def update
         @update_user = User.find(params[:id])
-        @update_user.update!(likes: params[:likes])
+        if params[:likes] == null
+            @update_user.update!(likes: [])
+        else
+            @update_user.update!(likes: params[:likes])
         render json: @update_user, status: :accepted
     end
 
