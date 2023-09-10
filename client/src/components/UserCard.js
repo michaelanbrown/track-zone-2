@@ -29,8 +29,8 @@ function UserCard( { user }) {
               } else {
                 res.json().then(json => setErrors([json.errors]))
               }
-      })
-      }}
+        })}
+      }
 
         return (
             <div>
@@ -46,7 +46,7 @@ function UserCard( { user }) {
                 Last Three Races:
                 {user.id !== currentUser.id ? userLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
                 {user.id == currentUser.id ? currentUserLastThreeRaces.map(race => <li key={race.id}>{race.name}</li>) : null }
-                <p>{liked ? <button className='like'>"❤️"</button> : <button className='like'>"♡"</button>}{" "}
+                <p>{liked ? <button className='like' onClick={handleLikeButton}>"❤️"</button> : <button className='like' onClick={handleLikeButton}>"♡"</button>}{" "}
                   {user.likes.length !== 1 ? `${user.likes.length} Likes` : `${user.likes.length} Like`}</p>
                 <br/>
                 <br/>
