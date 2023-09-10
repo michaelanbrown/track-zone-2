@@ -10,25 +10,27 @@ function UserCard( { user }) {
     const currentUserLastThreeRaces = currentUser.races.slice(-3)
     const [liked, setLiked] = useState(user.likes.indexOf(currentUser.username) > -1)
     const [likesArray, setLikesArray] = useState(user.likes)
+    const [errors, setErrors] = useState([])
 
-    // function handleLikeButton(e) {
-    //   e.preventDefault();
-    //   fetch(`${id}`, {
-    //       method: "PATCH",
-    //       headers: {
-    //           "Content-Type" : "application/json",
-    //           "Accept" : "application/json"
-    //       },
-    //       body: JSON.stringify(updateFormData)
-    //       }).then((res) => {
-    //           if(res.ok){
-    //             res.json()
-    //             .then(race => {
-    //               updateRaces(race)})
-    //           } else {
-    //             res.json().then(json => setErrors([json.errors]))
-    //           }
-    //   })}
+    function handleLikeButton(e) {
+      e.preventDefault();
+      if(liked) {
+        fetch(`${user.id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type" : "application/json",
+              "Accept" : "application/json"
+          },
+          body: JSON.stringify(likesArray.filter((liker) => liker !== currentUser.username))
+          }).then((res) => {
+              if(res.ok){
+                res.json()
+                .then(setLikesArray(likesArray.filter((liker) => liker !== currentUser.username)))
+              } else {
+                res.json().then(json => setErrors([json.errors]))
+              }
+      })
+      }}
 
         return (
             <div>
